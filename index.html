@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Jared Sayani</title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+    <link href="./capital_game.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+  <style>
+    table {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    width: 850px;
+    border-collapse: collapse;
+    }
+    th, td {
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    border-bottom: 2px solid #D3D3D3;
+    }
+
+  </style>
+
+  </head>
+
+  <body>
+  <script src="jquery/js/jquery-1.9.0.min.js"></script>
+  <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+  <script src="./country_capital_pairs.js"></script>
+  <script src="./capital_game.js"></script>
+    <!--Your HTML here-->
+    <h1 style="font-size:70px; text-align: center; font-family: 'Bakbak One', cursive;"  >Name the capital <i class="far fa-flag"></i></h1>
+    <script>
+    let x;
+    function randomCountry(){
+    x = Math.floor(Math.random() * pairs.length);
+    document.getElementById("pr2__question").innerHTML = pairs[x].country;
+    }
+    </script>
+    <script>
+    function focusInput() {
+    document.getElementById("pr2__answer").focus();
+    document.getElementById("pr2__answer").value = "";
+    }
+    </script>
+    <script>
+    function newRow() {
+    var table = document.getElementById("myTable");
+
+    var row = table.insertRow(2);
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+
+    cell1.innerHTML = pairs[x].country;
+    cell2.innerHTML =  document.getElementById("pr2__answer").value;
+    cell3.innerHTML = pairs[x].capital;
+      }
+    </script>
+
+    <table id="myTable" style="font-size:200%;" class="center">
+      <tr style="border-bottom: 3px solid #330066; font-family: 'Oswald', sans-serif;">
+        <th>Country</th>
+        <th>Capital</th>
+        <th>Answer</th>
+      </tr>
+      <tr>
+        <td id="pr2__question"></td>
+        <td><input id="pr2__answer" type="text" placeholder="Your answer" autofocus><br></td>
+        <td> <button id="pr2__submit" onclick="newRow(); randomCountry(); focusInput();">See Answer</button> </td>
+      </tr>
+    </table>
+
+    <script>
+    randomCountry();
+    </script>
+    <script>
+     var inputText = document.getElementById("pr2__answer");
+     inputText.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+           event.preventDefault();
+           document.getElementById("pr2__submit").click();
+        }
+     });
+    </script>
+  </body>
+</html>
